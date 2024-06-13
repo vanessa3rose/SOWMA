@@ -1,4 +1,3 @@
 export function GET() {
-  return new Response(`Hello, world!`);
+  return new Response("Hello, world!");
 }
-
