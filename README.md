@@ -10,7 +10,7 @@ This template provides a minimal setup to get React working in Vite with:
 
 To get the template up and running:
 
-1. Install Node.js (v18 or later) and npm.
+1. Install [Node.js](https://nodejs.org/en) (v20 or later) and npm.
 2. Install the Vercel CLI (`npm install --global vercel`).
 3. Copy this repo as a template and clone it onto your local machine.
 4. Install all required packages by running `npm install`.
