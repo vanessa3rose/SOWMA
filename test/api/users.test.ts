@@ -9,20 +9,14 @@ async function getUserTest(name) {
   assert.deepEqual(returnedJSON, {name, length: name.length}, 'matches original');
 }
 
-test('GET User Normal Names', async () => {
+test('GET User Successful Responses', async () => {
   getUserTest("Gabe");
   getUserTest("Ben");
-});
-
-test('GET User Special Characters', async () => {
-  getUserTest("!@#$%^&*()`~-=_+[];',./{}:\"'<>?")
-});
-
-test("GET User Long Name", async () => {
+  getUserTest("!@#$%^&*()`~-=_+[];',./{}:\"'<>?");
   getUserTest('x'.repeat(1024*1024));
-})
+});
 
-test('GET User Missing Name Param', async () => {
+test('GET User Missing Name Param Error', async () => {
   const request = new Request("http://localhost:5173/users?name=");
   const response = await GET(request);
   assert.strictEqual(400, response.status);
