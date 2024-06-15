@@ -1,29 +1,27 @@
-const userInfo = {
-  "Gabe": "ChatGPT didn't write this for me :)",
-  "Ben": "[Insert Stuff About Ben Here]"
-};
-
 /*
-  Simple function that returns a fun fact for a requested user
+  Simple function that returns information for given data.
 
   Example frontend call:
-  fetch("http://localhost:3000/api/users?" + new URLSearchParams({
-      name: "Gabe",
-  })).then(res => res.text()).then(res => console.log(res))
+  fetch(`http://localhost:3000/api/users?name=${encodeURIComponent(name)})
+    .then(res => res.json())
+    .then(json => console.log(json))
 */
 export function GET(request: Request) {
   const searchParams = new URLSearchParams(new URL(request.url).searchParams);
-
-  if (!request || !searchParams || !searchParams.has("name")) {
-    return new Response("Bad Request", {
-      status: 400
-    })
-  }
-
   const name = searchParams.get("name");
-  if (name && name in userInfo) {
-    return new Response(userInfo[name as keyof typeof userInfo]);
-  }
-  return new Response("User entry not found!");
-}
 
+  if (!name) {
+    return new Response(JSON.stringify({ error: "No name provided" }), {
+      status: 400,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  return new Response(JSON.stringify({ name, length: name.length }), {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
