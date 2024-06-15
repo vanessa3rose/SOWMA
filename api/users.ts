@@ -11,8 +11,17 @@ export function GET(request: Request) {
   const name = searchParams.get("name");
 
   if (!name) {
-    return Response.json({ error: "No name provided" }, { status: 400 });
+    return new Response(JSON.stringify({ error: "No name provided" }), {
+      status: 400,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   }
 
-  return Response.json({ name, length: name.length });
+  return new Response(JSON.stringify({ name, length: name.length }), {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 }
