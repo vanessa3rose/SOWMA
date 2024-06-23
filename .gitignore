@@ -25,3 +25,6 @@ dist-ssr
 
 .vercel
 .env
+
+# Testing coverage files
+coverage
